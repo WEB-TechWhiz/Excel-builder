@@ -1,0 +1,10 @@
+product:
+  name: Sales Tracker
+  version: 1.0.0
+  author: MuffinCodes
+locale:
+  currency: INR
+  language: en
+  date_format: DD/MM/YYYY
+theme:
+  name: premium
