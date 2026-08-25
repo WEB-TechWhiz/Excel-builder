@@ -1,14 +1,13 @@
 /**
  * build.server.ts
  *
- * Server-side workbook generation — delegates to the FastAPI Python backend
+ * Server-side workbook generation ï¿½ delegates to the FastAPI Python backend
  * (excel-engine-api) which uses the excel-product-engine library.
  *
  * Previously this ran ExcelJS locally on the Node server. Now it is a thin
  * HTTP proxy so all theming, styling, and formula logic lives in Python.
  */
 
-import { supabase } from "@/integrations/supabase/client";
 import type { ProductDef } from "./types";
 
 const API_BASE =
@@ -16,24 +15,19 @@ const API_BASE =
     ? process.env.API_URL
     : "http://localhost:8000";
 
-async function getToken(): Promise<string> {
-  const { data } = await supabase.auth.getSession();
-  const token = data.session?.access_token;
-  if (!token) throw new Error("Not authenticated — please sign in.");
-  return token;
+function getIdentity(): string {
+  return (typeof import.meta !== "undefined" && import.meta.env?.VITE_USER_ID) || "local-user";
 }
 
 export async function buildWorkbook(
   product: ProductDef,
   productId?: string | null,
-): Promise<Buffer> {
-  const token = await getToken();
-
-  const res = await fetch(`${API_BASE}/api/workbooks/generate`, {
+ ): Promise<Buffer> {
+  const res = await fetch(`${API_BASE}/api/v1/workbooks/generate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "X-User-Id": getIdentity(),
     },
     body: JSON.stringify({ product_id: productId ?? null, product }),
   });
