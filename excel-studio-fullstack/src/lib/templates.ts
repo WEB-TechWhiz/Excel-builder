@@ -1,0 +1,208 @@
+import { Product } from '../types/schema';
+
+export const TEMPLATES: Product[] = [
+  {
+    id: 'financial-os-flagship',
+    name: 'Financial OS — Enterprise Suite',
+    version: '2.4.0',
+    author: 'Financial Engineering Labs',
+    currency: 'USD',
+    dateFormat: 'YYYY-MM-DD',
+    theme: 'premium',
+    sheets: [
+      {
+        id: 'fin_dash',
+        name: 'Executive Dashboard',
+        description: 'High-level financial KPIs, liquidity metrics, and EBITDA margins',
+        columns: [
+          { key: 'period', label: 'Financial Period', type: 'text' },
+          { key: 'revenue', label: 'Gross Revenue ($)', type: 'currency' },
+          { key: 'cogs', label: 'Cost of Goods ($)', type: 'currency' },
+          { key: 'opex', label: 'Operating Expenses ($)', type: 'currency' },
+          { key: 'ebitda', label: 'EBITDA ($)', type: 'currency' },
+          { key: 'margin', label: 'Net Margin (%)', type: 'percent' },
+        ],
+        kpis: [
+          { label: 'Total Gross Revenue', aggregation: 'sum', column: 'revenue', format: 'currency' },
+          { label: 'Total Operating Expenses', aggregation: 'sum', column: 'opex', format: 'currency' },
+          { label: 'Cumulative EBITDA', aggregation: 'sum', column: 'ebitda', format: 'currency' },
+          { label: 'Average Profit Margin', aggregation: 'avg', column: 'margin', format: 'percent' },
+        ],
+        rows: [
+          ['Q1 2026', '1250000', '350000', '480000', '420000', '33.6%'],
+          ['Q2 2026', '1420000', '390000', '510000', '520000', '36.6%'],
+          ['Q3 2026', '1680000', '440000', '560000', '680000', '40.5%'],
+          ['Q4 2026', '2100000', '520000', '630000', '950000', '45.2%'],
+        ],
+      },
+      {
+        id: 'fin_revenue',
+        name: 'Revenue Streams',
+        description: 'Segmented subscription and enterprise services breakdown',
+        columns: [
+          { key: 'channel', label: 'Revenue Stream', type: 'text' },
+          { key: 'accounts', label: 'Active Accounts', type: 'number' },
+          { key: 'arpu', label: 'ARPU ($)', type: 'currency' },
+          { key: 'mrr', label: 'Total Monthly ($)', type: 'currency' },
+          { key: 'arr', label: 'Annualized Run Rate ($)', type: 'currency' },
+        ],
+        kpis: [
+          { label: 'Total Active Accounts', aggregation: 'sum', column: 'accounts', format: 'number' },
+          { label: 'Combined MRR', aggregation: 'sum', column: 'mrr', format: 'currency' },
+          { label: 'Total Annualized ARR', aggregation: 'sum', column: 'arr', format: 'currency' },
+        ],
+        rows: [
+          ['Enterprise SaaS', '142', '4500', '639000', '7668000'],
+          ['Mid-Market Tier', '480', '1200', '576000', '6912000'],
+          ['Self-Serve Pro', '3200', '99', '316800', '3801600'],
+          ['Custom Professional Services', '28', '8500', '238000', '2856000'],
+        ],
+      },
+      {
+        id: 'fin_networth',
+        name: 'Balance Sheet & Net Worth',
+        description: 'Asset allocations, liabilities, and retained equity balance',
+        columns: [
+          { key: 'asset_class', label: 'Asset / Liability Class', type: 'text' },
+          { key: 'category', label: 'Category', type: 'text' },
+          { key: 'book_val', label: 'Book Value ($)', type: 'currency' },
+          { key: 'market_val', label: 'Market Valuation ($)', type: 'currency' },
+        ],
+        kpis: [
+          { label: 'Total Book Value', aggregation: 'sum', column: 'book_val', format: 'currency' },
+          { label: 'Market Valuation', aggregation: 'sum', column: 'market_val', format: 'currency' },
+        ],
+        rows: [
+          ['Cash & Treasury Bills', 'Liquid Assets', '4200000', '4200000'],
+          ['Accounts Receivable (30d)', 'Current Assets', '840000', '820000'],
+          ['IP & Proprietary Software', 'Intangible Assets', '12000000', '18500000'],
+          ['Senior Credit Facility', 'Long-term Debt', '1500000', '1500000'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'saas-metrics-cockpit',
+    name: 'SaaS Metrics & Unit Economics Cockpit',
+    version: '1.8.0',
+    author: 'SaaS Metrics Guild',
+    currency: 'USD',
+    dateFormat: 'YYYY-MM-DD',
+    theme: 'midnight',
+    sheets: [
+      {
+        id: 'saas_growth',
+        name: 'Growth & Retention',
+        description: 'MRR movement, net retention, and churn analytics',
+        columns: [
+          { key: 'month', label: 'Billing Month', type: 'text' },
+          { key: 'starting_mrr', label: 'Starting MRR ($)', type: 'currency' },
+          { key: 'new_mrr', label: 'New Bookings ($)', type: 'currency' },
+          { key: 'expansion_mrr', label: 'Expansion ($)', type: 'currency' },
+          { key: 'churn_mrr', label: 'Churn / Downgrade ($)', type: 'currency' },
+          { key: 'ending_mrr', label: 'Net Ending MRR ($)', type: 'currency' },
+        ],
+        kpis: [
+          { label: 'Total New Bookings', aggregation: 'sum', column: 'new_mrr', format: 'currency' },
+          { label: 'Total Expansion MRR', aggregation: 'sum', column: 'expansion_mrr', format: 'currency' },
+          { label: 'Total Lost to Churn', aggregation: 'sum', column: 'churn_mrr', format: 'currency' },
+        ],
+        rows: [
+          ['January', '450000', '42000', '18000', '6500', '503500'],
+          ['February', '503500', '48000', '22000', '7100', '566400'],
+          ['March', '566400', '55000', '26000', '8200', '639200'],
+          ['April', '639200', '64000', '31000', '9000', '725200'],
+        ],
+      },
+      {
+        id: 'unit_econ',
+        name: 'Unit Economics (CAC & LTV)',
+        description: 'Customer acquisition cost payback and lifetime value ratios',
+        columns: [
+          { key: 'cohort', label: 'Customer Segment', type: 'text' },
+          { key: 'cac', label: 'Blended CAC ($)', type: 'currency' },
+          { key: 'arpu', label: 'Avg Monthly ARPU ($)', type: 'currency' },
+          { key: 'ltv', label: 'Estimated LTV ($)', type: 'currency' },
+          { key: 'payback', label: 'Payback (Months)', type: 'number' },
+        ],
+        kpis: [
+          { label: 'Average Blended CAC', aggregation: 'avg', column: 'cac', format: 'currency' },
+          { label: 'Average LTV', aggregation: 'avg', column: 'ltv', format: 'currency' },
+          { label: 'Avg Payback Months', aggregation: 'avg', column: 'payback', format: 'number' },
+        ],
+        rows: [
+          ['Enterprise', '14500', '4800', '96000', '3.8'],
+          ['Mid-Market', '4200', '1400', '28000', '3.5'],
+          ['Self-Serve SMB', '450', '120', '2400', '4.2'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sales-crm-pipeline',
+    name: 'Sales Pipeline & CRM Performance Tracker',
+    version: '3.1.0',
+    author: 'Revenue Operations',
+    currency: 'USD',
+    dateFormat: 'YYYY-MM-DD',
+    theme: 'forest',
+    sheets: [
+      {
+        id: 'deals_pipeline',
+        name: 'Active Deal Pipeline',
+        description: 'Real-time sales deal stages, probabilities, and forecast value',
+        columns: [
+          { key: 'account', label: 'Target Account', type: 'text' },
+          { key: 'owner', label: 'Account Executive', type: 'text' },
+          { key: 'stage', label: 'Deal Stage', type: 'text' },
+          { key: 'deal_value', label: 'Total Value ($)', type: 'currency' },
+          { key: 'probability', label: 'Win Probability (%)', type: 'percent' },
+        ],
+        kpis: [
+          { label: 'Total Pipeline Value', aggregation: 'sum', column: 'deal_value', format: 'currency' },
+          { label: 'Average Probability', aggregation: 'avg', column: 'probability', format: 'percent' },
+        ],
+        rows: [
+          ['Acme Global Dynamics', 'Sarah Jenkins', 'Proposal Sent', '180000', '65%'],
+          ['Starlight Biotech', 'David Chen', 'Procurement & Security', '240000', '85%'],
+          ['Horizon Logistics', 'Elena Rostova', 'Discovery / Demo', '95000', '30%'],
+          ['Apex FinTech Inc', 'Sarah Jenkins', 'Contract Negotiation', '310000', '90%'],
+          ['Vanguard Retail Solutions', 'Marcus Brody', 'Demo Scheduled', '65000', '25%'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'inventory-ops-tracker',
+    name: 'Inventory Operations & Stock Valuation',
+    version: '1.2.0',
+    author: 'Supply Chain Operations',
+    currency: 'USD',
+    dateFormat: 'YYYY-MM-DD',
+    theme: 'sunset',
+    sheets: [
+      {
+        id: 'stock_levels',
+        name: 'Warehouse Stock & Valuation',
+        description: 'SKU reorder triggers, units in stock, and inventory book value',
+        columns: [
+          { key: 'sku', label: 'Product SKU', type: 'text' },
+          { key: 'name', label: 'Item Name', type: 'text' },
+          { key: 'qty', label: 'Units in Stock', type: 'number' },
+          { key: 'unit_cost', label: 'Unit Cost ($)', type: 'currency' },
+          { key: 'total_val', label: 'Total Valuation ($)', type: 'currency' },
+        ],
+        kpis: [
+          { label: 'Total Stock Units', aggregation: 'sum', column: 'qty', format: 'number' },
+          { label: 'Total Inventory Valuation', aggregation: 'sum', column: 'total_val', format: 'currency' },
+        ],
+        rows: [
+          ['SKU-10041', 'Industrial Router Pro-X', '450', '120', '54000'],
+          ['SKU-10042', 'Fiber Optic Transceiver 10G', '1800', '35', '63000'],
+          ['SKU-10043', 'Managed Power Distribution Unit', '320', '280', '89600'],
+          ['SKU-10044', 'Rackmount Server Chassis 2U', '140', '450', '63000'],
+        ],
+      },
+    ],
+  },
+];
